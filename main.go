@@ -1,16 +1,23 @@
 package main
 
-func main() {
-	// lis, err := net.Listen("tcp", ":9000")
-	// println(lis)
-	// if err != nil {
-	// 	log.Printf("Error listening: %s", err.Error())
-	// 	os.Exit(1)
-	// }
+import (
+	"log"
+	"net"
+	"os"
+	// b "github.com/christinavanmoof/generatePasswords/passwords"
+)
 
-	c := &b.generatePasswords.passwords.generatepasswords.GeneratePasswords{
-		Length: 8,
+func main() {
+
+	lis, err := net.Listen("tcp", ":9000")
+	println(lis)
+	if err != nil {
+		log.Printf("Error listening: %s", err.Error())
+		os.Exit(1)
 	}
 
-	println(c.CreatePassword())
+	// c := &b.GeneratePasswords{
+	// 	Length: 8,
+	// }
+
 }
