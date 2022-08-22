@@ -7,11 +7,9 @@ import (
 
 func TestCreatePasswords(t *testing.T) {
 	t.Run("test create passwords", func(t *testing.T) {
-		c := &GeneratePasswords{
-			Length: 8,
-		}
+		c := &GeneratePasswords{}
 
-		got := createPassword(c.Length)
+		got := c.Generate()
 
 		match, _ := regexp.MatchString("^[a-zA-Z0-9_]*$", got)
 
