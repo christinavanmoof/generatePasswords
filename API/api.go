@@ -16,9 +16,11 @@ type API struct {
 }
 
 func (a *API) ServeHTTP(w http.ResponseWriter, r *http.Request) {
-	mux := http.NewServeMux()
-	mux.HandleFunc("/generate", func(rw http.ResponseWriter, _ *http.Request) {
-		rw.Write([]byte(a.Gen.Generate())) // Write the generated password to the response writer
+	a.once.Do(func() {
+		mux := http.NewServeMux()
+		mux.HandleFunc("/generate", func(rw http.ResponseWriter, _ *http.Request) {
+			rw.Write([]byte(a.Gen.Generate())) // Write the generated password to the response writer
+		})
+		mux.ServeHTTP(w, r)
 	})
-	mux.ServeHTTP(w, r)
 }
